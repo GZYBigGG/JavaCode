@@ -19,10 +19,10 @@ function unique (arr) {
                     height:window.innerHeight,
                     distance:100   //两个顶点之间的默认距离设为100
                 };
-                console.log(defaultConfig.data.nodes);
-                console.log(defaultConfig.data.links);
-                $.extend(true,defaultConfig,config);
+                //console.log(defaultConfig.data.nodes);
                 
+                $.extend(true,defaultConfig,config);
+                //console.log(defaultConfig.data.nodes);
                 defaultConfig.data.links.forEach(function (e) {
                     if(typeof e.source=="number"&&typeof e.target=="number"){
                         var sourceNode = defaultConfig.data.nodes.filter(function (n) {
@@ -163,7 +163,8 @@ function unique (arr) {
                                 clearTimeout(_this.node.mouseoutTimeout);
                                 _this.node.mouseoutTimeout = null;
                             }
-                            _this.highlightToolTip(d);
+                            //_this.highlightToolTip(d);
+                            _this.highlightObject(d);
                         })
                         .on('mouseout', function() {
                             if (_this.node.mouseoutTimeout) {
@@ -171,7 +172,8 @@ function unique (arr) {
                                 _this.node.mouseoutTimeout = null;
                             }
                             _this.node.mouseoutTimeout=setTimeout(function() {
-                                _this.highlightToolTip(null);
+                               // _this.highlightToolTip(null);
+                               _this.highlightObject(null);
                             }, 300);
                         })
                         .on('dblclick',function(d){
