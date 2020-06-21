@@ -77,16 +77,23 @@ public class JavaToNeo4j {
         }
 
     }
-    public void toJosn() {
+    public void toJosn(String name1,String name2) {
     	Session session = driver.session();
-        StatementResult result = session.run(
-                "MATCH p=(n:People)--() RETURN p");
+    	StatementResult result;
+    	if(name1==null && name2==null) {
+            result = session.run(
+                    "MATCH p=(n:People)--() RETURN p");
+    	}else {
+          result = session.run(
+                "MATCH p=(n:People)--(m:People) where n.name = {x} and m.name = {y} RETURN p",
+                parameters("x", name1,"y",name2));
+    	}
         StringBuffer nodes = new StringBuffer();
         StringBuffer links = new StringBuffer();
         nodes.append("\"nodes\":[");
         links.append("\"links\":[");
         Set<Long> s = new HashSet<Long>();
-        while(result.hasNext()) {
+		while(result.hasNext()) {
         	Record record = result.next();
 
             

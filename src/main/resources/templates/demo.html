@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <script th:src="@{/scripts/d3.v4.js}"></script>
-    <script th:src="@{/scripts/jquery.min.js}"></script>
+  <meta charset="utf-8"/>
+  <script th:src="@{/scripts/d3.v4.js}"></script>
+  <script th:src="@{/scripts/jquery.min.js}"></script>
     <!-- <link rel="stylesheet" href="css/demo.css"/> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <form class="form-inline" th:action="@{/demo}"> 
+    <div class="form-group">
+      <label for="name1">人物一</label>
+      <input type="text" class="form-control" id="name1" name="name1">
+    </div>
+    <div class="form-group">
+      <label for="name2">人物二</label>
+      <input type="text" class="form-control" id="name2" name="name2"  >
+    </div>
+    <button type="submit" class="btn btn-default">查找</button>
+    <a class ="btn btn-default" th:href="@{/Alldemo}">查找全部</a>
+  </form>
+
 <script type="text/javascript">
 function unique (arr) {
   return Array.from(new Set(arr))
@@ -16,7 +34,7 @@ function unique (arr) {
                 var defaultConfig={
                     data:{"nodes":[],"links":[]},
                     width:window.innerWidth,
-                    height:window.innerHeight,
+                    height:window.innerHeight-30,
                     distance:100   //两个顶点之间的默认距离设为100
                 };
                 //console.log(defaultConfig.data.nodes);
@@ -70,12 +88,12 @@ function unique (arr) {
                 this.vis.append("svg:defs").selectAll("marker")
                         .data(["end"])
                         .enter().append("svg:marker")
-                        .attr("id","arrow")
+                        .attr("id","arrow") //	标识的id号
                         .attr('class','arrow')
-                        .attr("viewBox", "0 -5 10 10")
+                        .attr("viewBox", "0 -5 10 10") //坐标系的区域
                         .attr("refX", 27)
                         .attr("refY", 0)
-                        .attr("markerWidth", 9)
+                        .attr("markerWidth", 10)
                         .attr("markerHeight", 16)
                         .attr("markerUnits","userSpaceOnUse")
                         .attr("orient", "auto")
@@ -87,13 +105,13 @@ function unique (arr) {
                         .data(defaultConfig.data.links)
                         .enter().append("svg:line")
                         .attr("class", "link")
-                        .attr('stroke-width',1)
+                        .attr('stroke-width',5) //线的宽度
                         .attr("x1", function(d) { return d.source.x; })
                         .attr("y1", function(d) { return d.source.y; })
                         .attr("x2", function(d) { return d.target.x; })
                         .attr("y2", function(d) { return d.target.y; })
                         .attr("marker-end","url(#arrow)")
-                        .attr('stroke','#999');
+                        .attr('stroke','#999');   //设置颜色#999表示一种颜色
 
                 var dragstart=function(d, i) {
                     console.info(d3.event.subject)
