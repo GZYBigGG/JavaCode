@@ -26,7 +26,7 @@
   </form>
 
 <script type="text/javascript">
-$(function(){debugger
+$(function(){
 	var name1 = document.getElementById("name1").value;
 	var name2 = document.getElementById("name2").value;
 	//"/node/reload?name1="+name1+"&name2="+name2
@@ -210,15 +210,18 @@ $(function(){debugger
                         .attr("class", "circle")
 //                        .attr("xlink:href", "images/chenhai.png")
                         .attr("xlink:href", function(d){return "images/"+d.image})
-                        .attr("x", "-15px")
-                        .attr("y", "-15px")
+                        .attr("x", "-20px")
+                        .attr("y", "-30px")
                         .attr("width", "80px")
                         .attr("height", "80px");
                //节点下方文字
                 this.node.append("svg:text")
                         .attr("class", "nodetext")
                         .attr("dy", "30px")
+                        .attr("x", "20px") //字体的x,y坐标
+                        .attr("y", "50px") //
                         .attr('text-anchor','middle')
+                        .attr("font-size",20) //字体大小
                         .text(function(d) { return d.name });
 
                //边上的文字

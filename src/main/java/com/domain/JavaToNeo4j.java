@@ -32,58 +32,7 @@ public class JavaToNeo4j {
     {
         driver = GraphDatabase.driver(uri, AuthTokens.basic(user, password));
     }
-    public void printPeople(String initial)
-    {
-            Session session = driver.session();
-
-            // Auto-commit transactions are a quick and easy way to wrap a read.
-            StatementResult result = session.run(
-                    "MATCH (a:People) WHERE a.name STARTS WITH {x} RETURN a.name as PeopleName  ",
-                    parameters("x", initial));
-            // Each Cypher execution returns a stream of records.
-            while (result.hasNext())
-            {
-                //Record 是一行记录，内容是什么取决于你return的东西
-                Record record = result.next();
-                System.out.println(record);
-                // Values can be extracted from a record by index or name.
-                System.out.println(record.get("PeopleName").asString());
-            }
-
-    }
-    public void getAllNodes()
-    {
-        Session session = driver.session();
-
-        // Auto-commit transactions are a quick and easy way to wrap a read.
-        StatementResult result = session.run(
-                "MATCH (b:People) where n.name = '蔡成功' RETURN b");
-        // Each Cypher execution returns a stream of records.
-        while (result.hasNext())
-        {
-            //Record 是一行记录，内容是什么取决于你return的东西
-            Record record = result.next();
-            System.out.println(record);
-
-            List<Value> list = record.values();
-            for(Value v : list)
-            {
-                Node n = v.asNode();
-                System.out.println(n.labels().iterator().next()+"--"+n.id());
-
-                for(String k:n.keys())
-                {
-                    System.out.println(k+"---"+n.get(k) );
-                }
-                System.out.println("==========================");
-
-            }
-
-            // Values can be extracted from a record by index or name.
-//            System.out.println(record.get("b").asString());
-        }
-
-    }
+  
     public void toJosn(String name1,String name2) {
     	Session session = driver.session();
     	StatementResult result;
@@ -171,7 +120,7 @@ public class JavaToNeo4j {
         
     }
     
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")   
 	public Map toMap(String name1,String name2) {
     	Map<String, Object> resultMap = new HashMap<>();
     	Session session = driver.session();
