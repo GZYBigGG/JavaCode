@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 public class JavaToNeo4j {
 	Driver driver;
 	public JavaToNeo4j() {
-		driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "123456"));
+		driver = GraphDatabase.driver("bolt://123.56.170.16:7687", AuthTokens.basic("neo4j", "123456"));
 	}
     public void getConnect(String uri, String user, String password)
     {

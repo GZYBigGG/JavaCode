@@ -31,7 +31,7 @@ $(function(){
 	var name2 = document.getElementById("name2").value;
 	//"/node/reload?name1="+name1+"&name2="+name2
 			//"Neo4jSon.json"
-          d3.json("/node/reload?name1="+name1+"&name2="+name2, function(json) {debugger
+          d3.json("/node/reload?name1="+name1+"&name2="+name2, function(json) {
             function GroupExplorer(wrapper,config){
                 var defaultConfig={
                     data:{"nodes":[],"links":[]},

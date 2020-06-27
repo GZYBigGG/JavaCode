@@ -40,7 +40,7 @@ public class Neo4jController {
 		String name1=null;
 		String name2=null;
 		//jt.getConnect("bolt://localhost:7687", "neo4j", "123456");
-		//jt.toJosn(name1,name2);
+		jt.toJosn(name1,name2);
 		return "demo";
 	}
 }
